@@ -137,7 +137,25 @@ company       (只在本地，远程没有)
 - 需要 `git push -u origin 分支名` 推送并建立关联
 - `git pull` 只拉取当前分支对应的远程分支
 
-### 3.4 合并分支
+### 3.4 分支命名规范
+
+团队协作中约定俗成的命名方式，一眼就能看出分支用途：
+
+| 前缀 | 用途 | 示例 |
+|------|------|------|
+| `feature/` | 新功能开发 | `feature/user-login`、`feature/export-excel` |
+| `bugfix/` | 修复 bug | `bugfix/pagination-error`、`bugfix/null-pointer` |
+| `hotfix/` | 紧急线上修复 | `hotfix/security-patch`、`hotfix/data-fix` |
+| `release/` | 发布版本 | `release/v1.0.0`、`release/2024-01` |
+| `refactor/` | 代码重构 | `refactor/user-service`、`refactor/api-cleanup` |
+| `test/` | 测试相关 | `test/unit-tests`、`test/e2e` |
+
+**命名建议：**
+- 使用小写字母和连字符 `-`
+- 简短但能说明用途
+- 可以加上 issue 编号：`feature/123-user-login`
+
+### 3.5 合并分支
 ```bash
 # 将 feature 合并到 master
 git checkout master      # 先切换到目标分支
@@ -145,6 +163,68 @@ git merge feature        # 合并 feature 到当前分支
 
 # 合并后删除已完成的功能分支
 git branch -d feature
+```
+
+### 3.6 Rebase 变基（进阶）
+
+`rebase` 可以让提交历史更整洁，变成一条直线。
+
+**场景：你在 feature 分支开发，同时 master 也有新提交**
+
+```
+初始状态：
+master:    A ── B ── E (别人的新提交)
+                 \
+feature:          C ── D (你的提交)
+```
+
+**用 merge 合并：**
+```bash
+git checkout feature
+git merge master
+```
+```
+结果（有分叉和合并提交）：
+master:    A ── B ── E ────────┐
+                 \              \
+feature:          C ── D ── M (合并提交)
+```
+
+**用 rebase 变基：**
+```bash
+git checkout feature
+git rebase master
+```
+```
+结果（一条直线，更整洁）：
+master:    A ── B ── E
+                      \
+feature:               C' ── D' (你的提交被"移动"到 E 后面)
+```
+
+**merge vs rebase 对比：**
+| | merge | rebase |
+|--|-------|--------|
+| 历史记录 | 保留分叉，有合并提交 | 一条直线，更整洁 |
+| 安全性 | 更安全，不改变历史 | 会重写提交历史 |
+| 适用场景 | 团队协作、公共分支 | 个人分支整理 |
+
+**使用建议：**
+- 新手先用 `merge`，更安全
+- `rebase` 只用于**未推送到远程的本地分支**
+- **永远不要 rebase 公共分支**（如 master），会导致团队混乱
+
+**常用 rebase 命令：**
+```bash
+# 将当前分支变基到 master
+git rebase master
+
+# 交互式 rebase（可以合并、修改、删除提交）
+git rebase -i HEAD~3     # 操作最近 3 个提交
+
+# 变基过程中出现冲突
+git rebase --continue    # 解决冲突后继续
+git rebase --abort       # 放弃变基，恢复原状
 ```
 
 ## 四、团队协作流程
@@ -347,4 +427,4 @@ git diff master..feature
 ```
 
 ---
-*最后更新：2024年12月*
+*最后更新：2024年12月19日*
