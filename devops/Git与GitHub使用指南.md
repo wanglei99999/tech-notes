@@ -227,9 +227,67 @@ git rebase --continue    # 解决冲突后继续
 git rebase --abort       # 放弃变基，恢复原状
 ```
 
-## 四、团队协作流程
+## 四、Commit 提交规范
 
-### 4.1 标准工作流程
+### 4.1 Conventional Commits（约定式提交）
+
+业界流行的提交信息规范，让提交历史清晰易读。
+
+**格式：**
+```
+<类型>(<范围>): <简短描述>
+
+[可选的详细说明]
+
+[可选的关联 issue]
+```
+
+**常用类型：**
+| 类型 | 说明 | 示例 |
+|------|------|------|
+| `feat` | 新功能 | `feat: 添加用户登录功能` |
+| `fix` | 修复 bug | `fix: 修复分页显示错误` |
+| `docs` | 文档更新 | `docs: 更新 README` |
+| `style` | 代码格式（不影响逻辑） | `style: 格式化代码` |
+| `refactor` | 重构（不是新功能也不是修 bug） | `refactor: 重构用户服务` |
+| `test` | 测试相关 | `test: 添加单元测试` |
+| `chore` | 构建/工具/依赖等 | `chore: 升级依赖版本` |
+| `perf` | 性能优化 | `perf: 优化查询速度` |
+
+**好的例子：**
+```bash
+git commit -m "feat(user): 添加用户登录功能"
+git commit -m "fix(table): 修复分页数据不刷新的问题"
+git commit -m "docs: 添加 Git 学习笔记"
+git commit -m "refactor(api): 重构文件上传接口"
+git commit -m "chore: 更新 package.json 依赖"
+```
+
+**坏的例子：**
+```bash
+git commit -m "update"           # 太模糊
+git commit -m "fix bug"          # 什么 bug？
+git commit -m "修改"             # 修改了什么？
+git commit -m "1"                # ???
+git commit -m "."                # 完全没意义
+```
+
+### 4.2 简单原则
+
+1. **用动词开头**：添加、修复、更新、删除、重构
+2. **说清楚改了什么**：让别人（包括未来的自己）能看懂
+3. **一个 commit 只做一件事**：方便回滚和追溯
+
+**个人项目简化版：**
+```bash
+git commit -m "添加 Git 学习笔记"
+git commit -m "修复登录页面样式问题"
+git commit -m "重构文件上传组件"
+```
+
+## 五、团队协作流程
+
+### 5.1 标准工作流程
 ```
 1. 从 master 创建功能分支
    git checkout master
