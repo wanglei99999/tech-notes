@@ -484,5 +484,141 @@ git diff master..feature
 └─────────────────────────────────────────────────────────────────┘
 ```
 
+
+
+
+## 十、进阶场景处理
+
+### 10.1 分支分叉后强制同步
+
+**场景：** 本地分支（如 home）和远程主分支（如 master）分叉太久，每次合并都冲突，想让本地分支完全同步远程分支。
+
+```bash
+# 1. 取消当前合并状态（如果在合并中）
+git merge --abort
+
+# 2. 获取远程最新代码
+git fetch origin
+
+# 3. 强制重置到远程分支
+git reset --hard origin/master
+
+# 4. 强制推送到远程（覆盖远程分支）
+git push origin home --force
+```
+
+**注意：** `reset --hard` 会丢弃所有本地未提交的修改，`--force` 会覆盖远程历史，确保没有需要保留的代码再执行。
+
+### 10.2 冲突时选择保留某一方版本
+
+**场景：** 合并冲突时，不想手动编辑，直接选择保留某一方的版本。
+
+```bash
+# 保留"对方"（被合并进来的分支）的版本
+git checkout --theirs 文件名
+
+# 保留"自己"（当前分支）的版本
+git checkout --ours 文件名
+
+# 然后标记为已解决
+git add 文件名
+git commit -m "resolve conflicts"
+```
+
+**理解 theirs 和 ours：**
+- `--ours`：当前所在分支的版本（HEAD）
+- `--theirs`：要合并进来的分支的版本
+
+### 10.3 查看冲突文件
+
+```bash
+# 方式1：git status（最常用）
+git status
+# 冲突文件显示在 "Unmerged paths:" 下，标记为 "both modified"
+
+# 方式2：只列出冲突文件路径
+git diff --name-only --diff-filter=U
+
+# 方式3：查看详细冲突信息
+git ls-files -u
+```
+
+### 10.4 Git 中文显示乱码解决
+
+**问题：** 中文文件名显示为八进制编码，如 `\346\273\221\345\212\250...`
+
+**解决：**
+```bash
+# 让 Git 正常显示中文路径
+git config --global core.quotepath false
+
+# 设置提交信息和日志的编码
+git config --global i18n.commitencoding utf-8
+git config --global i18n.logoutputencoding utf-8
+```
+
+**原因：** Git 默认会对非 ASCII 字符进行转义，设置 `core.quotepath = false` 后直接原样输出。
+
+## 十一、Pull Request (PR) 工作流
+
+### 11.1 什么是 PR
+
+PR（Pull Request）是 GitHub 上的功能，用于请求将一个分支的代码合并到另一个分支。
+
+**PR 的好处：**
+- 代码审查（Code Review）
+- 合并记录清晰
+- 支持讨论和评论
+- 可配合 CI/CD 自动化检查
+
+### 11.2 PR 操作流程
+
+```
+1. 在本地开发分支完成代码
+   git add .
+   git commit -m "完成xxx功能"
+
+2. 推送到远程
+   git push origin feature-xxx
+
+3. 在 GitHub 网页上
+   - 点击 "Compare & pull request" 或 "New pull request"
+   - 选择 base: master ← compare: feature-xxx
+   - 填写标题和描述
+   - 点击 "Create pull request"
+
+4. 等待审核（团队项目）或直接合并（个人项目）
+   - 点击 "Merge pull request"
+   - 点击 "Confirm merge"
+
+5. 合并后可删除功能分支
+   - GitHub 会提示 "Delete branch"
+```
+
+### 11.3 个人项目的分支同步建议
+
+如果你有多个分支（如 master 和 company），建议的工作流：
+
+```
+1. 平时在 company 分支开发、提交
+   git checkout company
+   git add .
+   git commit -m "xxx"
+   git push origin company
+
+2. 功能完成后，发 PR 合并到 master
+   （在 GitHub 上操作）
+
+3. 合并后，同步 company 分支
+   git checkout company
+   git pull origin master
+   # 或者
+   git fetch origin
+   git reset --hard origin/master
+   git push origin company --force
+```
+
+这样两个分支就不会分叉太远，避免频繁冲突。
+
 ---
-*最后更新：2024年12月19日*
+*最后更新：2025年12月23日*
