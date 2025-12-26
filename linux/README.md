@@ -13,7 +13,8 @@
 | [进程调度深度解析](Linux进程调度深度解析.md) | 调度器演进、CFS、负载均衡、调度命令 | ✅ |
 | [性能统计原理](Linux性能统计原理.md) | 负载计算、CPU时间统计、性能指标 | ✅ |
 | [用户态协程](Linux用户态协程.md) | Go GMP 模型、栈内存、Netpoller | ✅ |
-| [容器化技术](Linux容器化技术.md) | 虚拟机vs容器、Namespace、Cgroup | 🚧 |
+| [容器化技术](Linux容器化技术.md) | 虚拟机vs容器、Namespace、Cgroup | ✅ |
+| [Cgroup 资源控制](Linux-Cgroup资源控制.md) | 控制组创建、内核结构、CPU 限制、K8s 对应 | 🚧 |
 | 内存管理 | 虚拟内存、页表、内存分配 | 🚧 |
 | 文件系统 | VFS、ext4、I/O 调度 | 🚧 |
 | 进程与线程 | fork、exec、线程模型 | 🚧 |
