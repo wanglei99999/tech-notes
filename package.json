@@ -1,0 +1,27 @@
+{
+  "name": "tech-notes",
+  "version": "1.0.0",
+  "description": "技术学习笔记",
+  "scripts": {
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wanglei99999/tech-notes.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wanglei99999/tech-notes/issues"
+  },
+  "homepage": "https://github.com/wanglei99999/tech-notes#readme",
+  "dependencies": {
+    "vitepress": "^1.6.4"
+  },
+  "devDependencies": {
+    "markdown-it-mathjax3": "^4.3.2"
+  }
+}
