@@ -20,6 +20,7 @@ export default defineConfig({
       '/linux/': [
         {
           text: 'Linux',
+          collapsed: false,
           items: [
             { text: '概览', link: '/linux/' },
             { text: 'Cgroup资源控制', link: '/linux/Linux-Cgroup资源控制' },
@@ -35,6 +36,7 @@ export default defineConfig({
       '/devops/': [
         {
           text: 'DevOps',
+          collapsed: false,
           items: [
             { text: 'Docker与K8s部署', link: '/devops/Docker与K8s部署学习笔记' },
             { text: 'Git与GitHub使用指南', link: '/devops/Git与GitHub使用指南' }
@@ -44,6 +46,7 @@ export default defineConfig({
       '/LLM-fundamentals/': [
         {
           text: 'LLM 基础',
+          collapsed: false,
           items: [
             { text: '概览', link: '/LLM-fundamentals/' },
             { text: 'NLP基础概念', link: '/LLM-fundamentals/第1章-NLP基础概念' },
@@ -54,6 +57,7 @@ export default defineConfig({
         },
         {
           text: 'RAG 专题',
+          collapsed: true,
           items: [
             { text: 'RAG流程', link: '/LLM-fundamentals/RAG/RAG流程' },
             { text: '01-Embedding原理', link: '/LLM-fundamentals/RAG/01-Embedding原理详解' },
@@ -77,10 +81,35 @@ export default defineConfig({
 
     search: {
       provider: 'local'
-    }
+    },
+
+    footer: {
+      message: '持续学习，持续记录',
+      copyright: 'Copyright © 2025-present'
+    },
+
+    outline: {
+      label: '页面导航',
+      level: [2, 3]
+    },
+
+    docFooter: {
+      prev: '上一篇',
+      next: '下一篇'
+    },
+
+    lastUpdated: {
+      text: '最后更新于'
+    },
+
+    returnToTopLabel: '回到顶部',
+    sidebarMenuLabel: '菜单',
+    darkModeSwitchLabel: '主题'
   },
 
   markdown: {
     math: true
-  }
+  },
+
+  lastUpdated: true
 })
