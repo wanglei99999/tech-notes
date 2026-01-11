@@ -13,10 +13,45 @@ export default defineConfig({
       { text: '首页', link: '/' },
       { text: 'Linux', link: '/linux/' },
       { text: 'DevOps', link: '/devops/' },
-      { text: 'LLM', link: '/LLM-fundamentals/' }
+      { text: 'LLM', link: '/LLM-fundamentals/' },
+      { text: 'Agent', link: '/agent/' }
     ],
 
     sidebar: {
+      '/agent/': [
+        {
+          text: 'Agent 开发',
+          collapsed: false,
+          items: [
+            { text: '概览', link: '/agent/' }
+          ]
+        },
+        {
+          text: 'LangChain/LangGraph',
+          collapsed: false,
+          items: [
+            { text: '01-环境搭建', link: '/agent/langchain/01-环境搭建' },
+            { text: '02-Agent核心概念', link: '/agent/langchain/02-Agent核心概念' },
+            { text: '03-快速入门完整示例', link: '/agent/langchain/03-快速入门完整示例' },
+            { text: '04-Agent详解', link: '/agent/langchain/04-Agent详解' },
+            { text: '05-Models详解', link: '/agent/langchain/05-Models详解' },
+            { text: '06-Messages详解', link: '/agent/langchain/06-Messages详解' },
+            { text: '07-Tools详解', link: '/agent/langchain/07-Tools详解' },
+            { text: '08-记忆系统详解', link: '/agent/langchain/08-记忆系统详解' },
+            { text: '09-输出控制详解', link: '/agent/langchain/09-输出控制详解' },
+            { text: '10-中间件详解', link: '/agent/langchain/10-中间件详解' },
+            { text: '11-Guardrails', link: '/agent/langchain/11-Guardrails' },
+            { text: '12-Runtime详解', link: '/agent/langchain/12-Runtime详解' },
+            { text: '13-上下文工程详解', link: '/agent/langchain/13-上下文工程详解' },
+            { text: '14-MCP详解', link: '/agent/langchain/14-MCP详解' },
+            { text: '15-HITL详解', link: '/agent/langchain/15-HITL详解' },
+            { text: '16-多Agent架构详解', link: '/agent/langchain/16-多Agent架构详解' },
+            { text: '17-LangSmith工具链详解', link: '/agent/langchain/17-LangSmith工具链详解' },
+            { text: '18-RAG检索详解', link: '/agent/langchain/18-RAG检索详解' },
+            { text: '19-Deep Research实践', link: '/agent/langchain/19-Deep Research实践' }
+          ]
+        }
+      ],
       '/linux/': [
         {
           text: 'Linux',
