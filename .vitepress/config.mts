@@ -48,7 +48,7 @@ export default defineConfig({
             { text: '16-多Agent架构详解', link: '/agent/langchain/16-多Agent架构详解' },
             { text: '17-LangSmith工具链详解', link: '/agent/langchain/17-LangSmith工具链详解' },
             { text: '18-RAG检索详解', link: '/agent/langchain/18-RAG检索详解' },
-            { text: '19-Deep Research实践', link: '/agent/langchain/19-Deep Research实践' }
+            { text: '19-Deep Research实践', link: '/agent/langchain/19-Deep%20Research实践' }
           ]
         }
       ],
