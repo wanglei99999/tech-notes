@@ -28,4 +28,9 @@ features:
     details: NLP 基础、Transformer 架构、RAG 检索增强生成完整知识体系
     link: /LLM-fundamentals/
     linkText: 查看笔记
+  - icon: 🤖
+    title: AI Agent 开发
+    details: LangChain、LangGraph 框架，Agent 架构、工具调用、记忆系统、多 Agent 协作
+    link: /agent/
+    linkText: 查看笔记
 ---
